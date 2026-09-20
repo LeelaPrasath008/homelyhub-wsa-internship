@@ -15,11 +15,19 @@ export const getSignup = (user) => async(dispatch)=>{
 //login
 export const getLogin=(user) => async(dispatch) =>{
     try{
-    dispatch(userActions.getLoginRequest());
-    const {data} = await axiosInstance.post("/v1/rent/user/login", user);
-    dispatch(userActions.getLoginDetails(data.user))
+        dispatch(userActions.getLoginRequest());
+
+        const {data} = await axiosInstance.post(
+            "/v1/rent/user/login",
+            user
+        );
+
+        localStorage.setItem("token", data.token);
+
+        dispatch(userActions.getLoginDetails(data.user));
+
     }catch(error){
-      dispatch(userActions.getError(error.response.data.message))
+        dispatch(userActions.getError(error.response.data.message))
     }
 }
 
