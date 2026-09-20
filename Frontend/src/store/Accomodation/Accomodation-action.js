@@ -6,7 +6,7 @@ export const createAccomodation = (accomodationData) => async (dispatch) => {
     dispatch(accomodationActions.getAccomodationRequest());
 
     const response = await axiosInstance.post(
-      "/v1/rent/user/newAccommodation",
+      "/v1/rent/listing/newAccommodation",
       accomodationData
     );
 
@@ -31,7 +31,7 @@ export const getAllAccomodation = () => async (dispatch) => {
     dispatch(accomodationActions.getAccomodationRequest());
 
     const { data } = await axiosInstance.get(
-      "/v1/rent/user/myAccommodation"
+      "/v1/rent/listing/myAccommodation"
     );
 
     const accom = data.data;
